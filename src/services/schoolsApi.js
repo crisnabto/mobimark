@@ -18,3 +18,10 @@ export const getSchoolByName = async (schoolName) => {
     const response = await data.json();
     return response;
 }
+
+// busca avancada; quando os 3 filtros estao selecionados
+export const advancedSearch = async (city, state, schoolName) => {
+    const data = await fetch(`https://cors-anywhere.herokuapp.com/http://educacao.dadosabertosbr.com/api/escolas/buscaavancada?cidade=${city}&estado=${state}&nome=${schoolName}`);
+    const response = await data.json();
+    return response;
+}

@@ -1,7 +1,7 @@
 import './App.css';
-import Login from './components/Login';
+import Login from './pages/Login';
 import { Route, Switch } from 'react-router-dom';
-import Escolas from './components/Escolas';
+import Escolas from './pages/Escolas';
 
 function App() {
   return (

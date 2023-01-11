@@ -1,0 +1,16 @@
+.headerContainer {
+    background-color: #ffffff;
+    display: flex;
+    justify-content:flex-start;
+    box-shadow: 0 4px 50px rgba(145, 142, 142, 0.1);
+    /* border: 1px solid pink; */
+    width: 100%;
+    margin: 0 auto;
+}
+
+img {
+    width: 3%;
+    color: aqua;
+    margin: 1em;
+    filter: invert(70%) sepia(40%) saturate(5007%) hue-rotate(540deg) brightness(90%) contrast(80%);
+}
