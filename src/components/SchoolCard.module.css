@@ -1,0 +1,32 @@
+.tableStyle {
+    margin: 10px auto;
+    padding: 1px;
+    width: 80%;
+    background-color: #c9c3b8;
+}
+
+.tableStyle th {
+    background-color:  #efece6;
+    width: 25%;
+    padding: 5px;
+    margin: 50px;
+    border: 5px solid #ffffff;
+    
+}
+
+.tableStyle td {
+    padding: 5px;
+    margin: 10px;
+    background-color:  #efece6;
+    border: 5px solid #ffffff;
+    text-align: center;
+}
+
+.tableStyle tr {
+    margin: 10px;
+}
+
+.tableStyle tbody {
+    margin: 10px;
+    height: 100px;
+}

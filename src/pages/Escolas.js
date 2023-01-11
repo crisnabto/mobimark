@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { states } from "../services/states";
 import { getCitiesByState, getSchoolsByCity, getSchoolByName, advancedSearch } from '../services/schoolsApi';
 import SchoolCard from "../components/SchoolCard";
+import Header from "../components/Header";
+import styles from '../components/Escolas.module.css';
 
 function Escolas() {
     const [cities, setCities] = useState();
@@ -12,6 +14,7 @@ function Escolas() {
     const [schools, setSchools] = useState();
     const [showTable, setShowTable] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [notFound, setNotFound] = useState(false);
 
     const handleState = async (value) => {
         if (value !== '--') {
@@ -33,88 +36,101 @@ function Escolas() {
         }
     }
 
-    const handleFilters = async () => {
+    const handleFilters = async (e) => {
+        e.preventDefault();
         setLoading(true);
         let getSchool;
         if (saveId && state) {
             if (nameToSearch) {
                 getSchool = await advancedSearch(saveId, state, nameToSearch);
+                console.log(getSchool);
             } else {
                 getSchool = await getSchoolsByCity(saveId);
+                console.log(getSchool);
             }
         } else if (nameToSearch && state === '--') {
             getSchool = await getSchoolByName(nameToSearch);
+            console.log(getSchool);
         }
+        if (getSchool[0] === 0) setNotFound(true);
         setLoading(false);
         setSchools(getSchool[1])
         setShowTable(true);
     }
 
-    const cleanFilters = () => {
+    const cleanFilters = (e) => {
+        e.preventDefault();
         setNameToSearch('');
         setState('--');
         setSaveId(undefined);
         setShowTable(false);
+        setNotFound(false);
+        setLoading(false);
     }
 
     return (
-        <div>
-            <h1>Listagem de Escolas</h1>
-            <form>
+        <div className={styles.dashboardContainer}>
+            <Header />
+            <div className={styles.formContainer}>
+                <h1>Listagem de Escolas</h1>
+                <form >
 
-                <label htmlFor="search-name">
-                    <span>Nome</span>
-                    <input
-                        id="search-name"
-                        name="search-name"
-                        onChange={({ target: { value } }) => setNameToSearch(value)}
-                        value={nameToSearch}
-                    />
-                </label>
+                    <label htmlFor="search-name">
+                        <span>Nome</span>
+                        <input
+                            id="search-name"
+                            name="search-name"
+                            onChange={({ target: { value } }) => setNameToSearch(value)}
+                            value={nameToSearch}
+                        />
+                    </label>
 
-                
-                <label htmlFor="state-input">
-                    <span>Estado</span>
-                    <select
-                        id="state-input"
-                        name="state-input"
-                        onChange={({ target: { value } }) => handleState(value)}
-                        value={state}
-                    >
-                        {states.map(state => <option>{state}</option>)}
-                    </select>
 
-                </label>
+                    <label htmlFor="state-input">
+                        <span>Estado</span>
+                        <select
+                            id="state-input"
+                            name="state-input"
+                            onChange={({ target: { value } }) => handleState(value)}
+                            value={state}
+                        >
+                            {states.map(state => <option>{state}</option>)}
+                        </select>
 
-                {cities && state !== '--' && (
-                    <>
-                        <label htmlFor="city-input">
-                            <span>Município</span>
-                            <select
-                                id="state-input"
-                                name="state-input"
-                                onChange={({ target: { value } }) => handleCity(value)}
-                                defaultValue={cities}
-                            >
-                                <option>--</option>
-                                {cities !== '--' && cities.map(state => <option>{state}</option>)}
-                            </select>
+                    </label>
 
-                        </label>
-                    </>
-                )}
-            </form>
+                    {cities && state !== '--' && (
+                        <>
+                            <label htmlFor="city-input">
+                                <span>Município</span>
+                                <select
+                                    id="city-input"
+                                    name="city-input"
+                                    onChange={({ target: { value } }) => handleCity(value)}
+                                    defaultValue={cities}
+                                >
+                                    <option>--</option>
+                                    {cities !== '--' && cities.map(city => <option>{city}</option>)}
+                                </select>
 
-            <nav>
-                <button onClick={handleFilters}>Aplicar filtros</button>
-                <button onClick={cleanFilters}>Limpar filtros</button>
-            </nav>
+                            </label>
+                        </>
+                    )}
+                    <nav>
+                        <button onClick={handleFilters}>Aplicar filtros</button>
+                        <button onClick={cleanFilters}>Limpar filtros</button>
+                    </nav>
+                </form>
+
+            </div>
 
             {loading ? <p>Loading</p> : schools && showTable && (
                 schools.map((school, index) => (
-                    <SchoolCard key={ index} school={school} index={index} />
+                    <SchoolCard key={index} school={school} index={index} />
                 ))
             )}
+
+            {notFound && <p>Nenhum resultado encontrado</p>}
         </div>
     )
 }

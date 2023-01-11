@@ -9,19 +9,37 @@ function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
+    const credentials = [
+        {
+            email: "admin@mobimark.com",
+            password: "admin"
+        }, 
+        {
+            email: "user1@mobimark.com",
+            password: "user1"
+        }, 
+        {
+            email: "user2@mobimark.com",
+            password: "user2"
+        }
+    ];
+
+    useEffect(() => {
+        localStorage.clear();
+    })
+
     const handleClick = (e) => {
         e.preventDefault();
-        const get = JSON.parse(localStorage.getItem('login'));
-        if (email === get.email && password === get.senha) {
+        
+        const match = credentials.find((user) => user.email === email && user.password === password);
+
+        if (match) {
+            localStorage.setItem('loggedUser', JSON.stringify({ email: email }));
             history.push('/escolas');
         } else {
             alert('Usuário ou senha incorretos');
         }
     }
-
-    useEffect(() => {
-        localStorage.setItem('login', JSON.stringify({ email: 'admin@admin.com', senha: '123456' }))
-    })
 
     return (
         <div className={styles.loginContainer}>
@@ -42,9 +60,9 @@ function Login() {
                                 type="email"
                                 name="email"
                                 id="email-input"
-                                class="fas"
+                                class="fas fa-envelope"
                                 onChange={({ target: { value } }) => setEmail(value)}
-                                placeholder="user@mail.com"
+                                placeholder="&#xf0e0; user@mail.com"
                             />
                         </label>
 
@@ -54,7 +72,6 @@ function Login() {
                                 type="password"
                                 name="password"
                                 id="password-input"
-                                class="fas"
                                 onChange={({ target: { value } }) => setPassword(value)}
                                 placeholder="Sua senha"
                             />
