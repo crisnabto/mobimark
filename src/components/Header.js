@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import styles from './Header.module.css';
 import mobimark from '../images/mobimark logo.png';
 import profile from '../images/profile2.png';
+import { useHistory } from "react-router-dom";
 
 function Header() {
     const [user, setUser] = useState();
     const [path, setPath] = useState();
+    const history = useHistory();
 
     useEffect(() => {
         const get = JSON.parse(localStorage.getItem('loggedUser'));
@@ -14,13 +16,31 @@ function Header() {
         setPath(path);
     }, []);
 
+    const handleClick = () => {
+        if (path) history.push('/');
+        localStorage.clear();
+    }
+
+    const handleNewSchool = () => {
+        history.push('/cadastrar');
+    }
+
     return (
         <div className={styles.headerContainer}>
-            <img src={mobimark} alt="mobimark-logo" id="mobimark"/>
+            <div className={ styles.mobimark }>
+                <img src={mobimark} alt="mobimark-logo"/>
+            </div>
             { user && path === '/escolas' && (
                 <div className={styles.userBox}>
-                    <img src={profile} alt="profile" />
-                    <p>{user}</p>
+                    <nav>
+                        <a href="cadastrar" onClick={ handleNewSchool }>Cadastrar Nova Escola</a>
+                        <a href="sobre">Sobre</a>
+                    </nav>
+                    <div className={styles.profileBox}>
+                        <img src={profile} alt="profile"/>
+                        <p>{user}</p>
+                        <button onClick={ handleClick }>Logout</button>
+                    </div>
                 </div>
             )}
         </div>

@@ -43,14 +43,11 @@ function Escolas() {
         if (saveId && state) {
             if (nameToSearch) {
                 getSchool = await advancedSearch(saveId, state, nameToSearch);
-                console.log(getSchool);
             } else {
                 getSchool = await getSchoolsByCity(saveId);
-                console.log(getSchool);
             }
         } else if (nameToSearch && state === '--') {
             getSchool = await getSchoolByName(nameToSearch);
-            console.log(getSchool);
         }
         if (getSchool[0] === 0) setNotFound(true);
         setLoading(false);

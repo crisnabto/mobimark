@@ -60,9 +60,10 @@ function Login() {
                                 type="email"
                                 name="email"
                                 id="email-input"
-                                class="fas fa-envelope"
+                                // class="fas fa-envelope"
                                 onChange={({ target: { value } }) => setEmail(value)}
-                                placeholder="&#xf0e0; user@mail.com"
+                                // placeholder="&#xf0e0; user@mail.com"
+                                placeholder="user@mail.com"
                             />
                         </label>
 

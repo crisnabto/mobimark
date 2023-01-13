@@ -3,30 +3,35 @@
     background-color: #fafafa;
     display: flex;
     flex-direction: column;
-    min-height:100vh;
+    width: 100%;
+    min-height:100%;
+    height: fit-content;
+    margin-left: auto;
+    position: fixed;
 }
 
 .formContainer {
-    /* border: 1px solid red; */
-    background-color: #efece6;
+    background-color: #d6d6d4;
     display: flex;
     align-items: center;
-    /* justify-content:center; */
-    height:12vh;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     width: 90%;
+    max-width: 1400px;
     margin: 1em auto;
     border-radius: 4px;
+    white-space: nowrap;
+    padding: 20px;
 }
 
 .formContainer h1 {
-    margin-left: 120px;
+    font-family: 'Montserrat', sans-serif;
     color: #3E4854;
     white-space: nowrap;
 }
 
 .formContainer input {
     font-weight: 100;
+    min-width: 30px;
     width: 200px;
     height: 20%;
     background-color: #ffffff;
@@ -40,23 +45,23 @@
     background: #ffffff;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     height: 27px;
-    width: 150px;
-    max-width: 300px;
+    width: 170px;
+    max-width: 400px;
     border: 0;
     border-radius: 4px;
 }
 
 form {
-    /* border: 1px solid red; */
     margin: 0 5%;
 }
 
 form label span {
     margin: 10px;
+    font-family: 'Poppins', sans-serif;
 }
 
 form button {
-    margin: 8px 10px 1px;
+    margin: 10px 10px 1px;
     color: white;
     width: 100px;
     font-weight: 600;
@@ -65,8 +70,48 @@ form button {
     border: 0.5px solid rgb(85, 163, 211);
     background: rgb(85, 163, 211);
     box-shadow: rgba(148 , 187 , 233 , 0.8) 0 1px 4px;
+    font-family: 'Poppins', sans-serif;
 }
 
-#city-input {
-    width: 200px;
+form button:hover {
+    background-color: rgb(112, 186, 232);
+    cursor: pointer;
+}
+
+form button:disabled {
+    background-color: gray;
+    border: 1px solid gray;
+}
+
+form button:disabled:hover {
+    cursor:default;
+}
+
+@media only screen and (max-width: 768px) {
+    .formContainer {
+        white-space: wrap;
+        flex-direction: column;
+        width: 70vw;
+        margin-left: auto;
+        min-width: fit-content;
+    }
+
+    .formContainer h1 {
+        font-size: x-large;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+    }
+
+    form input {
+        margin: 10px;
+        width: 70vw;
+    }
+
+    form select {
+        margin: 10px;
+    }
 }

@@ -24,6 +24,7 @@
 .imageContainer img {
     width: 90%;
     max-width: 500px;
+    filter: invert(70%) sepia(40%) saturate(5007%) hue-rotate(540deg) brightness(90%) contrast(80%);
 }
 
 hr {

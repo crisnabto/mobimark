@@ -1,32 +1,90 @@
 .headerContainer {
     background-color: #ffffff;
     display: flex;
-    justify-content:flex-start;
     box-shadow: 0 4px 50px rgba(145, 142, 142, 0.1);
     width: 100%;
-    margin: 0 auto;
+    max-height: 77px;
+    min-height: 77px;
+    overflow: hidden;
 }
 
-img {
-    width: 3%;
-    color: aqua;
-    margin: 1em;
+.mobimark {
+    align-self: center;
+    margin-left: 1%;
+    float: left;
     filter: invert(70%) sepia(40%) saturate(5007%) hue-rotate(540deg) brightness(90%) contrast(80%);
 }
 
-.userBox {
-    margin-left: 75%;
-    display: flex;
-    align-items: center;
-    width: 30%;
+.mobimark img {
+    object-fit: cover;
+    width: 4rem;
+    padding: 1px;
+    align-self: center;
 }
 
-.userBox i, p {
-    margin: 0 10px 0 15px;
+.userBox {
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    width: 500px;
+    border: 1px solid red;
+}
+
+a {
+    margin-right: 30px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profileBox {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    margin-left: 65%;
+}
+
+.userBox p {
+    font-family: 'Poppins', sans-serif;
+    margin-right: 10px;
+}
+
+.userBox button {
+    padding: 5px;
+    background: rgb(85, 163, 211);
+    color: white;
+    border: 1px solid rgb(145, 187, 194);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.userBox button:hover {
+    background-color: rgb(112, 186, 232);
 }
 
 .userBox img {
+    /* border: 1px solid black; */
     width: 30px;
-    margin-left: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
 
+@media screen and (max-width: 768px) {
+    .headerContainer {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .mobimark {
+        float: none;
+        text-align: left;
+        display: block;
+        margin-left: 20px;
+    }
+
+    .userBox {
+        margin-left: 10%;
+        display: flex;
+        flex-direction: column;
+    }
+
+}
