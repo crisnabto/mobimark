@@ -22,20 +22,6 @@ function SchoolCard(props) {
                     <td>{school.cidade}</td>
                 </tr>
             </tbody>
-            {/* <thead>
-                <tr>
-                    <th className='codeUf'>UF</th>
-                    <th>Município</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{school.estado}</td>
-                    <td>{school.cidade}</td>
-                </tr>
-            </tbody> */}
-
-           
         </table>
     )
 }

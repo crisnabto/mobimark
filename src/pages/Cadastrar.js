@@ -1,14 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
+import AddSchoolForm from "../components/AddSchoolForm";
 import Header from "../components/Header";
+import NewSchoolCard from "../components/NewSchoolCard";
 
 function Cadastrar() {
-    const turnos = ['Manhã', 'Tarde', 'Noite', 'Integral']
     const [shift, setShift] = useState([]);
     const [schoolName, setSchoolName] = useState();
     const [principalName, setPrincipalName] = useState();
     const [zone, setZone] = useState('Urbano');
     const [disabled, setDisabled] = useState(true);
-    let newArray = shift;
+    const [showTable, setShowTable] = useState(false);
+    const [schoolStorage, setSchoolStorage] = useState();
 
     const checkDisabled = useCallback(() => {
         if (shift.length !== 0 && schoolName && zone) {
@@ -22,95 +24,64 @@ function Cadastrar() {
         e.preventDefault();
         const storage = JSON.parse(localStorage.getItem('school')) || [];
         const newStorage = {
-            nome: {schoolName},
-            diretor: {principalName},
-            localizacao: {zone},
-            turnos: {zone},
+            nome: schoolName,
+            diretor: principalName,
+            localizacao: zone,
+            turnos: shift,
         }
         storage.push(newStorage);
-        localStorage.setItem('school', JSON.stringify(newStorage));
+        localStorage.setItem('school', JSON.stringify(storage));
+        window.dispatchEvent(new Event("storage"));
+        setSchoolStorage(storage);
+        setShowTable(true);
+        setSchoolName('');
+        setPrincipalName('');
     }
-    
 
     const handleShift = (name) => {
-        if (!newArray.includes(name)) {
-            newArray.push(name);
-            setShift(newArray)
+        if (!shift.includes(name)) {
+            setShift([...shift, name]);
         } else {
-            const removed = newArray.filter((item) => item !== name)
-            setShift(removed);
+            setShift(shift.filter((item) => item !== name))
         }
         checkDisabled();
     }
 
     useEffect(() => {
         checkDisabled();
-    }, [shift, schoolName, zone, checkDisabled])
+    }, [shift, schoolName, zone, checkDisabled]);
+
+    useEffect(() => {
+        const storage = JSON.parse(localStorage.getItem('school'));
+        setSchoolStorage(storage);
+        if (storage) setShowTable(true);
+    }, []);
+
+    window.addEventListener('storage', () => {
+        const storage = JSON.parse(localStorage.getItem('school'));
+        setSchoolStorage(storage);
+        if (storage) setShowTable(true);
+    })
 
     return (
         <div>
             <Header />
             <div>
                 <h1>Cadastrar Nova Escola</h1>
-                <form>
+                <AddSchoolForm 
+                    schoolName={schoolName}
+                    checkDisabled={checkDisabled}
+                    principalName={principalName}
+                    zone={zone}
+                    setPrincipalName={setPrincipalName}
+                    setSchoolName={setSchoolName}
+                    setZone={setZone}
+                    handleClick={handleClick}
+                    handleShift={handleShift}
+                    disabled={disabled}
+                />
 
-                    <label htmlFor="school-name">
-                            <span>Nome da escola:</span>
-                            <input
-                                id="school-name"
-                                name="school-name"
-                                onChange={({ target: { value } }) => setSchoolName(value)}
-                                value={schoolName}
-                                onClick={ checkDisabled }
-                            />
-                    </label>
-
-                    <label htmlFor="principal-name">
-                            <span>Nome do diretor:</span>
-                            <input
-                                id="principal-name"
-                                name="principal-name"
-                                onChange={({ target: { value } }) => setPrincipalName(value)}
-                                value={principalName}
-                                onClick={ checkDisabled }
-                            />
-                    </label>
-
-                    <label htmlFor="state-input">
-                            <span>Localização</span>
-                            <select
-                                id="state-input"
-                                name="state-input"
-                                onChange={({ target: { value } }) => setZone(value)}
-                                onClick={ checkDisabled }
-                                value={zone}
-                            >
-                                <option>Urbano</option>
-                                <option>Rural</option>
-                            </select>
-
-                    </label>
-
-                    <span>Turno:</span>
-                    { turnos.map(Shift => (
-                        <label htmlFor={Shift}>
-                            <span>{Shift}</span>
-                                <input
-                                    id={Shift}
-                                    name={Shift}
-                                    type="checkbox"
-                                    onClick={({ target: { name } }) => handleShift(name)}
-                                />
-                        </label>
-                    ))}
-
-                    <button 
-                        onClick={ handleClick }
-                        disabled={disabled}
-                    >
-                        Cadastrar
-                    </button>
-                </form>
+                {showTable && <NewSchoolCard schools={schoolStorage} />}
             </div>
 
         </div>
