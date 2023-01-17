@@ -18,7 +18,15 @@ Foi desenvolvido um sistema com quatro telas:
 <br>
 
  - Tela de Login
+<br>
  
+Utilize as seguintes credenciais para ter acesso às demais páginas:
+ 
+<br>
+ 
+email: admin@mobimark.com
+<br>
+password: admin
 <br>
 
   - Tela de Listagem de Escolas
