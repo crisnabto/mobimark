@@ -1,0 +1,75 @@
+.newSchool {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    height: fit-content;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    padding-bottom: 40px;
+}
+
+.newSchool h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #3E4854;
+    white-space: nowrap;
+    text-align: center;
+    padding: 20px;
+}
+
+.newTableStyle {
+    margin: 20px auto 0;
+    padding: 1px;
+    width: 90%;
+    height: 30px;
+    background-color: rgba(85, 163, 211, 0.3);
+    border: 1px solid rgba(255, 255, 255);
+    border-radius: 4px;
+}
+
+.tableContent {
+    display: flex;
+}
+
+.tableContent button {
+    width: 60px;
+    height: 30px;
+    align-self: center;
+}
+
+.codeField {
+    width: 7%;
+}
+
+.newTableStyle tbody td {
+    background-color:  rgba(255, 255, 255);
+    text-align: center;
+}
+
+.newTableStyle tr {
+    margin: 5px;
+}
+
+.newTableStyle tbody {
+    margin: 10px;
+    height: 60px;
+}
+
+.tableContent button {
+    padding: 5px;
+    background: rgb(85, 163, 211);
+    color: white;
+    border: 1px solid rgb(145, 187, 194);
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.tableContent button:hover {
+    background-color: rgb(112, 186, 232);
+}
