@@ -3,7 +3,7 @@ import { states } from "../services/states";
 import { getCitiesByState, getSchoolsByCity, getSchoolByName, advancedSearch } from '../services/schoolsApi';
 import SchoolCard from "../components/SchoolCard";
 import Header from "../components/Header";
-import styles from '../components/Escolas.module.css';
+import styles from '../css/Escolas.module.css';
 
 function Escolas() {
     const [cities, setCities] = useState();
@@ -38,15 +38,16 @@ function Escolas() {
 
     const handleFilters = async (e) => {
         e.preventDefault();
-        setLoading(true);
         let getSchool;
         if (saveId && state) {
+            setLoading(true);
             if (nameToSearch) {
                 getSchool = await advancedSearch(saveId, state, nameToSearch);
             } else {
                 getSchool = await getSchoolsByCity(saveId);
             }
         } else if (nameToSearch && state === '--') {
+            setLoading(true);
             getSchool = await getSchoolByName(nameToSearch);
         }
         if (getSchool[0] === 0) setNotFound(true);
@@ -121,10 +122,12 @@ function Escolas() {
 
             </div>
 
-            {loading ? <p>Loading</p> : schools && showTable && (
-                schools.map((school, index) => (
-                    <SchoolCard key={index} school={school} index={index} />
-                ))
+            {loading ? <p>Carregando...</p> : schools && showTable && (
+                <div className={ styles.tableStyleContainer }>
+                    {schools.map((school, index) => (
+                        <SchoolCard key={index} school={school} index={index} />
+                    ))}
+                </div>
             )}
 
             {notFound && <p>Nenhum resultado encontrado</p>}

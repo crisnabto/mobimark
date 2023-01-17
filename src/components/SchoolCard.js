@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './SchoolCard.module.css';
+import styles from '../css/SchoolCard.module.css';
 
 function SchoolCard(props) {
     const { school } = props;
@@ -8,9 +8,9 @@ function SchoolCard(props) {
         <table className={ styles.tableStyle }>
             <thead>
                 <tr>
-                    <th>Código</th>
-                    <th>Nome da Escola</th>
-                    <th>UF</th>
+                    <th className={ styles.codeField }>Código</th>
+                    <th className={ styles.nameField }>Nome da Escola</th>
+                    <th className={ styles.codeField }>UF</th>
                     <th>Município</th>
                 </tr>
             </thead>

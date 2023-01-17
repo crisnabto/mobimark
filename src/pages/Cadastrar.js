@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import AddSchoolForm from "../components/AddSchoolForm";
 import Header from "../components/Header";
 import NewSchoolCard from "../components/NewSchoolCard";
+import styles from '../css/Cadastrar.module.css';
 
 function Cadastrar() {
     const [shift, setShift] = useState([]);
@@ -66,7 +67,7 @@ function Cadastrar() {
     return (
         <div>
             <Header />
-            <div>
+            <div className={styles.cadastrarContainer}>
                 <h1>Cadastrar Nova Escola</h1>
                 <AddSchoolForm 
                     schoolName={schoolName}
@@ -81,9 +82,8 @@ function Cadastrar() {
                     disabled={disabled}
                 />
 
-                {showTable && <NewSchoolCard schools={schoolStorage} />}
             </div>
-
+            {showTable && <NewSchoolCard schools={schoolStorage} />}
         </div>
     )
 }

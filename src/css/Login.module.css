@@ -27,7 +27,7 @@
     filter: invert(70%) sepia(40%) saturate(5007%) hue-rotate(540deg) brightness(90%) contrast(80%);
 }
 
-hr {
+.formContainer hr {
     position:absolute;
     height:60%;
     margin: 50%;

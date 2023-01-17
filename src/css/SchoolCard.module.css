@@ -1,0 +1,63 @@
+.tableStyle {
+    margin: 20px auto 0;
+    padding: 1px;
+    width: 90%;
+    background-color: rgba(85, 163, 211, 0.3);
+    border: 1px solid rgba(255, 255, 255);
+    border-radius: 4px;
+}
+
+.codeField {
+    width: 12%;
+}
+
+.nameField {
+    width: 50%;
+}
+
+.tableStyle td {
+    padding: 5px;
+    margin: 10px;
+    background-color:  rgba(255, 255, 255);
+    border: 5px solid #ffffff;
+    text-align: center;
+}
+
+.tableStyle tr {
+    margin: 10px;
+}
+
+.tableStyle tbody {
+    margin: 10px;
+    height: 100px;
+}
+
+@media only screen and (max-width: 768px) {
+    .nameField {
+        word-wrap: break-word;
+    }
+
+    .codeField {
+        word-wrap: break-word;
+    }
+
+    .tableStyle thead th {
+        padding: 3px;
+    }
+
+    .tableStyle tbody {
+        height: 70px;
+    }
+
+    .tableStyle tbody td {
+        font-size: smaller;
+        word-wrap: break-word;
+        border: 0;
+        padding: 0;
+    }
+
+    .tableStyle {
+        width: 97%;
+    }
+}
+

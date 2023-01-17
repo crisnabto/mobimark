@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import Header from "../components/Header";
-import styles from '../components/Login.module.css';
+import styles from '../css/Login.module.css';
 import mobimark from '../images/mobimark.png';
 
 function Login() {
@@ -60,9 +60,7 @@ function Login() {
                                 type="email"
                                 name="email"
                                 id="email-input"
-                                // class="fas fa-envelope"
                                 onChange={({ target: { value } }) => setEmail(value)}
-                                // placeholder="&#xf0e0; user@mail.com"
                                 placeholder="user@mail.com"
                             />
                         </label>

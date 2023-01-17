@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styles from '../css/NewSchoolCard.module.css';
 
 function NewSchoolCard (props) {
     const [schoolsToShow, setSchoolsToShow] = useState(props.schools);
@@ -16,19 +17,19 @@ function NewSchoolCard (props) {
     }
 
     return (
-        <div>
-            <p>Escolas Cadastradas</p>
+        <div className={ styles.newSchool }>
+            <h1>Escolas Cadastradas</h1>
             { schoolsToShow.length === 0 ? <p>Nenhuma escola cadastrada</p> : (
                 <div>
                     { schoolsToShow.map((school, key) => (
-                        <div key={key}>
-                            <table>
+                        <div key={key} className={styles.tableContent}>
+                            <table className={ styles.newTableStyle }>
                                 <thead>
                                     <tr>
-                                        <th>Nome da Escola</th>
-                                        <th>Diretor</th>
-                                        <th>Localização</th>
-                                        <th>Turnos</th>
+                                        <th className={ styles.codeField }>Nome da Escola</th>
+                                        <th className={ styles.codeField }>Diretor</th>
+                                        <th className={ styles.codeField }>Localização</th>
+                                        <th className={ styles.codeField }>Turnos</th>
                                     </tr>
                                 </thead>
                                 <tbody>

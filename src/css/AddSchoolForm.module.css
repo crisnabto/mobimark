@@ -1,0 +1,57 @@
+.addSchoolContainer {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.addSchoolCheckbox {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.addSchoolCheckbox button {
+    margin-left: 20px;
+}
+
+.addSchoolContainer button {
+    margin-left: 10px;
+}
+
+.addSchoolContainer select {
+    background: #ffffff;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    height: 27px;
+    width: 200px;
+    max-width: 400px;
+    border: 0;
+    border-radius: 4px;
+}
+
+@media only screen and (max-width: 768px) {
+    .addSchoolContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .addSchoolCheckbox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+     .addSchoolContainer input{
+        width: 200px;
+    }
+
+    .addSchoolCheckbox label input {
+        width: 80px;
+        border: 1px solid black;
+    }
+
+    .addSchoolCheckbox button {
+        margin:  10px;
+    }
+
+}
