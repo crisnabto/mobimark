@@ -1,8 +1,14 @@
 # Desafio técnico Mobimark
 
+Este projeto é uma plataforma de listagem de escolas que acessa dados de uma API para exibir informações sobre diferentes escolas. Os usuários podem pesquisar e filtrar a lista de escolas por vários critérios, como localização e tipo. A plataforma fornece aos usuários informações detalhadas sobre cada escola, incluindo endereço, detalhes de contato, programas e avaliações.
+
 ## Orientações
 
 Clone o repositório
+
+```
+git clone git@github.com:crisnabto/mobimark.git
+```
 
 Instale as dependências:
 <br>
